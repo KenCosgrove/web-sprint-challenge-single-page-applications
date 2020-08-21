@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 import formSchema from './formSchema'
 import * as yup from 'yup'
 import axios from 'axios'
+import './App.css';
 
 const initialData= [
   {

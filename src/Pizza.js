@@ -20,7 +20,7 @@ const Pizza = (props) => {
     }
 
     return (
-       <form>
+       <form onSubmit={onSubmit}>
              <div className='errors'>
                   <div>{errors.name}</div>
              </div> 
@@ -32,14 +32,15 @@ const Pizza = (props) => {
                  onChange={onInputChange}/>
             </label>
             <br/>
-            <label >
-                Size: <input
-                id="emailInput"
-                name="email"
-                value={values.email} 
-                type="text" 
-                onChange={onInputChange}/>
-            </label>
+            <label>Size:&nbsp;
+        
+          <select onChange={onInputChange} value={values.size}  name="size">
+            <option value="">-- Select a Size --</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </label>
             <br/>
             <label >
                 pepperoni: <input 
@@ -72,6 +73,15 @@ const Pizza = (props) => {
                 onChange={onCheckboxChange} 
                 type="checkbox"/>
             </label>
+            <label >
+                Special Instructions: <input
+                 value={values.instructions} 
+                 name="instructions" 
+                 type="text"
+                 onChange={onInputChange}/>
+            </label>
+            <br/>
+
             <button  >Add to Order</button>
        </form>
     )
