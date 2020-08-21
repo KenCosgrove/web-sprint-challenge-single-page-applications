@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const Form = (props) => {
     const {values, submit, update, errors, inputChange, checkboxChange} = props
    
@@ -84,10 +83,8 @@ const Form = (props) => {
                  onChange={onInputChange}/>
             </label>
             <br/>
-
             <button  >Add to Order</button>
        </form>
-       
     )
 }
 

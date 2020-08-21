@@ -17,15 +17,14 @@ const initialData= [
   instructions: ''
   }
 ]
+
 const initialFormErrors = {
   name: '',
-
 }
 
 const App = () => {
 const [formData, setFormData] = useState(initialData)
 const [formErrors, setFormErrors] = useState(initialFormErrors)
-const [order, setOrder] = useState([])
 
 const update = (inputName, inputData)=>
   setFormData({...formData, [inputName]: inputData})
@@ -35,9 +34,7 @@ const update = (inputName, inputData)=>
     axios
     .post("https://reqres.in/api/users", newOrder)
     .then(res => {
-      setOrder([res.data]); 
-      console.log("success", res);
-      console.log(order)
+      console.log(newOrder)
      }) 
     .catch(err => console.log("error"))
     .finally(() => {
@@ -51,7 +48,6 @@ const update = (inputName, inputData)=>
         instructions: ''}
            )
     })
-    console.log("submitted!");
   }
   const submit = ()=>{
     const newOrder = {
@@ -64,18 +60,6 @@ const update = (inputName, inputData)=>
       pineapple: formData.pineapple,
     }
    postNewOrder(newOrder)
-
-    setOrder([...order, newOrder])
-    console.log(newOrder)
-    setFormData({ 
-    name: '',
-    size: '',
-    pepperoni: false,
-    sausage: false,
-    mushrooms: false,
-    pineapple: false,
-    instructions: ''})
-    
         } 
 
         const checkboxChange = (name, isChecked) =>{
@@ -83,6 +67,7 @@ const update = (inputName, inputData)=>
             ...formData, [name]: isChecked
             })
           }
+
         const inputChange = (name, value) => {
          
           yup
@@ -100,16 +85,12 @@ const update = (inputName, inputData)=>
                 [name]: err.errors[0],
               })
             })
-      
           }
       
-
   return (
     
     <Router>
-      
       <h1>Lambda Za</h1>
-    
       <Link to='./'>Home</Link>
       <Link to='./pizza'>Order</Link>
       <Route path='/pizza' component={Form}>
@@ -121,10 +102,6 @@ const update = (inputName, inputData)=>
            errors = {formErrors}
            submit={submit}  />
       </Route>
-      
-      
-        
-     
     </Router>
   );
 };

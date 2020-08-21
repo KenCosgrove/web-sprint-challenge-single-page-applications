@@ -1,4 +1,3 @@
-
 describe('name input', ()=> {
     it('can type a name', ()=>{
         cy.visit("http://localhost:3000/pizza")
