@@ -1,10 +1,8 @@
 import React, {useState} from "react";
-import Pizza from './Pizza'
-import Home from './Home'
+import Form from './Form'
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 import formSchema from './formSchema'
 import * as yup from 'yup'
-import axios from 'axios'
 import './App.css';
 
 const initialData= [
@@ -86,20 +84,22 @@ const update = (inputName, inputData)=>
     <Router>
       
       <h1>Lambda Za</h1>
+    
       <Link to='./'>Home</Link>
       <Link to='./pizza'>Order</Link>
-      <Switch>
-      <Pizza 
+      <Route path='/pizza' component={Form}>
+      <Form 
            update={update}
            values={formData} 
            inputChange={inputChange} 
            checkboxChange={checkboxChange}
            errors = {formErrors}
            submit={submit}  />
-        <Route path='./pizza' component={Pizza}>
+      </Route>
+      
+      
+        
      
-        </Route>
-        </Switch>
     </Router>
   );
 };
