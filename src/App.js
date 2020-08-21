@@ -31,6 +31,28 @@ const update = (inputName, inputData)=>
   setFormData({...formData, [inputName]: inputData})
 
 
+  const postNewOrder = newOrder =>{
+    axios
+    .post("https://reqres.in/api/users", newOrder)
+    .then(res => {
+      setOrder([res.data]); 
+      console.log("success", res);
+      console.log(order)
+     }) 
+    .catch(err => console.log("error"))
+    .finally(() => {
+      setFormData(
+        {name: '',
+        size: '',
+        pepperoni: false,
+        sausage: false,
+        mushrooms: false,
+        pineapple: false,
+        instructions: ''}
+           )
+    })
+    console.log("submitted!");
+  }
   const submit = ()=>{
     const newOrder = {
       name: formData.name,
@@ -41,6 +63,8 @@ const update = (inputName, inputData)=>
       mushrooms: formData.mushrooms,
       pineapple: formData.pineapple,
     }
+   postNewOrder(newOrder)
+
     setOrder([...order, newOrder])
     console.log(newOrder)
     setFormData({ 
